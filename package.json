@@ -1,0 +1,22 @@
+{
+  "name": "meetingroombooking",
+  "version": "1.0.0",
+  "description": "4th year project",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rainbowcores/meeting-room-booking.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rainbowcores/meeting-room-booking/issues"
+  },
+  "homepage": "https://github.com/rainbowcores/meeting-room-booking#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
