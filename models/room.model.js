@@ -1,5 +1,6 @@
 let mongoose = require('mongoose');
 let schema = mongoose.Schema;
+let equipment = require('./equipment.model');
 
 let roomSchema = new schema({
   location: {
@@ -13,6 +14,7 @@ let roomSchema = new schema({
   status: {
     type: String,
     required: true,
+    default: "available",
     enum: ['booked', 'available', 'pending']
   },
   name: {
@@ -20,7 +22,7 @@ let roomSchema = new schema({
     required: true
   },
   equipment: {
-    type: Array,
+    type: [{ type: schema.Types.ObjectId, ref: 'equipment' }], // defined relationship
     required: false
   }
 });

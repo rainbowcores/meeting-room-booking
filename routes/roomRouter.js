@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const room = require('../models/room.model');
-const chalk = require('chalk');
-const mongoose = require('mongoose');
+const equipment = require('../models/equipment.model');
 
 router.get('/', function (req, res) {
   room.find({}, (error, rooms) => {
@@ -23,12 +22,24 @@ router.get('/:id', function (req, res) {
 });
 
 router.post('/', function (req, res) {
+  let equipmentArray = req.body.equipment;
+  // we need to make sure all the equipment ids passed by the user are valid  
+  equipmentArray.map((item, index) => {
+    equipment.findById(item, (error, item) => {
+      if (error) { 
+        equipmentArray.pop(index);
+       }
+      if (item === null) {
+        equipmentArray.pop(index);
+      }
+    });
+  });
   new room({
     location: req.body.location,
     capacity: req.body.capacity,
     status: req.body.status,
     name: req.body.name,
-    equipment: req.body.equipment
+    equipment: equipmentArray
   }).save(((error, user) => {
     if (error) {
       return res.status(400).json(error);

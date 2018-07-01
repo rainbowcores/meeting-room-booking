@@ -6,16 +6,23 @@ const SALT_WORK_FACTOR = 10;
 let userSchema = new schema({
   password: {
     type: String,
-    required: true
+    required: { true: 'You need to provide a password' }
   },
   email: {
     type: String,
-    required: true,
-    unique: true
+    required: { true: 'Email is required'},
+    unique: true,
+    validate: {
+      validator: function (email) {
+        // validator source: Chromium
+        return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+      },
+      message: '{VALUE} is not a email!'
+    },
   },
   firstname: {
     type: String,
-    required: true
+    required: { true: 'You need to provide a value for the field firstname' }
   },
   lastname: {
     type: String,
@@ -23,7 +30,7 @@ let userSchema = new schema({
   },
   role: {
     type: String,
-    required: true,
+    required: { true: 'You need to provide a value for the field lastname' },
     enum: ['admin', 'staff']
   }
 });
@@ -46,10 +53,10 @@ userSchema.pre('save', function (next) {
 });
 
 // password matcher function for login
-UserSchema.methods.comparePassword = function(password, cb) {
-  bcrypt.compare(password, this.password, function(err, isMatch) {
-      if (err) return cb(err);
-      cb(null, isMatch);
+userSchema.methods.comparePassword = function (password, cb) {
+  bcrypt.compare(password, this.password, function (err, isMatch) {
+    if (err) return cb(err);
+    cb(null, isMatch);
   });
 };
 

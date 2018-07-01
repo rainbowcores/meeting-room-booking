@@ -43,11 +43,11 @@ router.delete('/:id', function (req, res) {
   });
 });
 
-router.patch('/:id', function(req, res) {
+router.patch('/:id', function (req, res) {
   return res.status(200).send('equipment updated');
 });
 
-router.put('/:id', function(req, res) {
+router.put('/:id', function (req, res) {
   return res.status(200).send('equipment updated');
 });
 

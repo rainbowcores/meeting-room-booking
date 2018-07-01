@@ -3,10 +3,11 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const chalk = require('chalk'); // lib for colors and interesting stuff
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 mongoose.connect('mongodb://localhost/meetingroombooking')
 .then(console.log(chalk.gray('connected to MongoDB')))
-.catch(error => { console.log(error); });
+.catch(error => { console.log(chalk.red(error)); });
 let db = mongoose.connection;
 db.on('error', (error) => { console.log(chalk.red(error)) });
 
@@ -19,6 +20,7 @@ const equipmentRouter = require('./routes/equipmentRouter');
 var app = express();
 app.use(bodyParser.json()); // only parse requests wih content-type json headers
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 
 app.use('/api/users', userRouter);
 app.use('/api/rooms', roomRouter);

@@ -28,7 +28,8 @@ router.post('/', function (req, res) {
     room_id: req.body.room_id,
     startTime: req.body.startTime,
     stopTime: req.body.stopTime,
-    details: req.body.details
+    details: req.body.details,
+    userId: req.body.userId
   }).save(((error, booking) => {
     if (error) {
       return res.status(400).json(error);
