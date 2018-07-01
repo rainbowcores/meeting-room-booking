@@ -12,7 +12,8 @@ let roomSchema = new schema({
   },
   status: {
     type: String,
-    required: true
+    required: true,
+    enum: ['booked', 'available', 'pending']
   },
   name: {
     type: String,

@@ -3,15 +3,14 @@ let schema = mongoose.Schema;
 
 let bookingSchema = new schema({
   room_id: {
-    type: Number,
+    type: schema.Types.ObjectId,
     required: true
   },
   startTime: {
     type: Date,
     required: true,
-    default: Date.now
   },
-  endTime: {
+  stopTime: {
     type: Date,
     required: true
   },
