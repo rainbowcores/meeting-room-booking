@@ -1,14 +1,16 @@
 let mongoose = require('mongoose');
-let schema = mongoose.Schema;
 
-let equipmentSchema = new schema({
+let equipmentSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    maxlength: 255,
+    lowercase: true
   },
   details: {
     type: String,
-    required: false
+    required: false,
+    lowercase: true
   }
 });
 

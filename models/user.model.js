@@ -1,9 +1,8 @@
 let mongoose = require('mongoose');
-let schema = mongoose.Schema;
 const bcrypt = require('bcrypt'); // for hashing passwords
 const SALT_WORK_FACTOR = 10;
 
-let userSchema = new schema({
+let userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: { true: 'You need to provide a password' }
@@ -17,21 +16,29 @@ let userSchema = new schema({
         // validator source: Chromium
         return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
       },
-      message: '{VALUE} is not a email!'
+      message: `${email} is not a valid email address`
     },
+    lowercase: true
   },
   firstname: {
     type: String,
-    required: { true: 'You need to provide a value for the field firstname' }
+    required: { true: 'You need to provide a value for the field firstname' },
+    minlength: 3,
+    maxlength: 255,
+    lowercase: true
   },
   lastname: {
     type: String,
-    required: true
+    required: true,
+    minlength: 3,
+    maxlength: 255,
+    lowercase: true
   },
   role: {
     type: String,
     required: { true: 'You need to provide a value for the field lastname' },
-    enum: ['admin', 'staff']
+    enum: ['admin', 'staff'],
+    lowercase: true
   }
 });
 

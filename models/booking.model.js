@@ -1,9 +1,6 @@
 let mongoose = require('mongoose');
-let schema = mongoose.Schema;
-let room = require('./room.model');
-let user = require('./user.model');
 
-let bookingSchema = new schema({
+let bookingSchema = new mongoose.Schema({
   room_id: {
     type: schema.Types.ObjectId,
     required: true,
@@ -17,6 +14,7 @@ let bookingSchema = new schema({
   startTime: {
     type: Date,
     required: true,
+    default: Date.now
   },
   stopTime: {
     type: Date,
@@ -24,7 +22,8 @@ let bookingSchema = new schema({
   },
   details: {
     type: String,
-    required: true
+    required: true,
+    lowercase: true
   }
 });
 

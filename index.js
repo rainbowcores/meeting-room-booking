@@ -6,12 +6,15 @@ const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' }); // log requests to this file
+const config = require('config');
+const startUpDebugger = require('debug')('app:startup');
+const dbDebugger = require('debug')('app:db');
 
 mongoose.connect('mongodb://localhost/meetingroombooking')
-  .then(console.log(chalk.gray('connected to MongoDB')))
-  .catch(error => { console.log(chalk.red(error)); });
+  .then(dbDebugger(chalk.gray('connected to MongoDB')))
+  .catch(error => { dbDebugger(chalk.red(error)); });
 let db = mongoose.connection;
-db.on('error', (error) => { console.log(chalk.red(error)) });
+db.on('error', (error) => { dbDebugger(chalk.red(error)) });
 
 // routing middleware
 const userRouter = require('./routes/userRouter');
@@ -23,7 +26,7 @@ var app = express();
 app.use(express.json()); // only parse requests wih content-type json headers, sets results in req.body
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-app.use(express.static('public'));
+app.use(express.static('public')); // load static resources e.g images
 
 if (app.get('env') === 'development') {
   // log with standard Apache type to a file access.log
@@ -39,12 +42,12 @@ app.use('/api/bookings', bookingRouter);
 app.use('/api/equipment', equipmentRouter);
 
 app.get('/', (req, res) => {
-  res.send('Welcome');
+  res.send('API');
 });
 
 app.listen(3000, function () {
-  console.log(chalk.blue('Initializing project ....'));
-  console.log(chalk.green('rainbowcores loading awesomeness ...'));
-  console.log(chalk.yellow('Express project started :)'));
-  console.log(chalk.white('listening on port 3000'));
+  startUpDebugger(chalk.blue('Initializing project ....'));
+  startUpDebugger(chalk.green('rainbowcores loading awesomeness ...'));
+  startUpDebugger(chalk.yellow('Express project started :)'));
+  startUpDebugger(chalk.white('listening on port 3000'));
 });

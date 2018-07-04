@@ -1,11 +1,10 @@
 let mongoose = require('mongoose');
-let schema = mongoose.Schema;
-let equipment = require('./equipment.model');
 
-let roomSchema = new schema({
+let roomSchema = new mongoose.Schema({
   location: {
     type: String,
-    required: false
+    required: false,
+    lowercase: true
   },
   capacity: {
     type: Number,
@@ -15,11 +14,14 @@ let roomSchema = new schema({
     type: String,
     required: true,
     default: "available",
-    enum: ['booked', 'available', 'pending']
+    enum: ['booked', 'available', 'pending'],
+    lowercase: true
   },
   name: {
     type: String,
-    required: true
+    required: true,
+    maxlength: 255,
+    lowercase: true
   },
   equipment: {
     type: [{ type: schema.Types.ObjectId, ref: 'equipment' }], // defined relationship

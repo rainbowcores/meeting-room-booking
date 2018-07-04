@@ -1,5 +1,5 @@
 {
-    "_comment": "set these env vars in prod manually in shell",
+    "_comment": "set these env vars in prod server manually using shell",
     "mail": {
         "host": "MBR_MAIL_HOST",
         "password": "MBR_MAIL_PASSWORD"
