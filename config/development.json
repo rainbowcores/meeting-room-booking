@@ -1,0 +1,6 @@
+{
+    "mail": {
+        "host": "meetingroombooking_mail_host",
+        "password": "meetingroombooking_mail_password"
+    }
+}
