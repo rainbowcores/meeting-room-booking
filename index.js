@@ -5,7 +5,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' }); // log requests here
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' }); // log requests to this file
 
 mongoose.connect('mongodb://localhost/meetingroombooking')
   .then(console.log(chalk.gray('connected to MongoDB')))
@@ -24,11 +24,14 @@ app.use(express.json()); // only parse requests wih content-type json headers, s
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(express.static('public'));
-// log with standard Apache type
-app.use(morgan(
-  ':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"',
-  { stream: accessLogStream }
-));
+
+if (app.get('env') === 'development') {
+  // log with standard Apache type to a file access.log
+  app.use(morgan(
+    ':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"',
+    { stream: accessLogStream }
+  ));
+}
 
 app.use('/api/users', userRouter);
 app.use('/api/rooms', roomRouter);
