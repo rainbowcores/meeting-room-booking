@@ -31,7 +31,11 @@ To set the project up for a **production** environment, make sure to do the foll
 
 Refer to <https://codingsans.com/blog/node-config-best-practices> on instructions to properly configure environments for your **NodeJS** application
 
-## Documentation
+If you want to enable error logging in the console, add ``` export DEBUG=app:* ```
+
+Check **index.js** for the debug implementation from the debug module. Change the asterisk(*) to the name of the debugger you want to eneable. For more on using the module visit [it's page](https://www.npmjs.com/package/debug)
+
+## API Documentation
 A postman collection has been provided along with the code for this project.
 
 Please open the collection in postman for more context as to how to access the API
