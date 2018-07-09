@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const user = require('../models/user.model');
+const validateId = require('../validateObjectId');
 
 router.get('/', (req, res) => {
   user.find({}, (error, users) => {
@@ -12,6 +13,9 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
+  if (!validateId(req.params.id)) {
+    return res.status(400).json('Invalid user id');
+  }
   user.findById(req.params.id, (error, user) => {
     if (error) {
       return res.status(500).json(error);
@@ -36,6 +40,9 @@ router.post('/', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
+  if (!validateId(req.params.id)) {
+    return res.status(400).json('Invalid user id');
+  }
   user.findByIdAndRemove(req.params.id, (error, user) => {
     if (error) {
       return res.status(500).json(error);
@@ -45,11 +52,17 @@ router.delete('/:id', (req, res) => {
 });
 
 router.patch('/:id', (req, res) => {
+  if (!validateId(req.params.id)) {
+    return res.status(400).json('Invalid user id');
+  }
   return res.status(200).send('user updated');
 });
 
 router.put('/:id', (req, res) => {
+  if (!validateId(req.params.id)) {
+    return res.status(400).json('Invalid user id');
+  }
   return res.status(200).send('user updated');
 });
 
-const userRouter = module.exports = router;
+module.exports = router;

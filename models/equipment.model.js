@@ -10,8 +10,9 @@ let equipmentSchema = new mongoose.Schema({
   details: {
     type: String,
     required: false,
-    lowercase: true
+    lowercase: true,
+    maxlnegth: 100 // length contraint
   }
 });
 
-module.exports = mongoose.model('Equipment', equipmentSchema);
+module.exports = mongoose.model('equipment', equipmentSchema);

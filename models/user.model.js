@@ -16,7 +16,7 @@ let userSchema = new mongoose.Schema({
         // validator source: Chromium
         return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
       },
-      message: `${email} is not a valid email address`
+      message: 'Invalid email address'
     },
     lowercase: true
   },
@@ -67,4 +67,4 @@ userSchema.methods.comparePassword = function (password, cb) {
   });
 };
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('user', userSchema);

@@ -2,17 +2,24 @@ const express = require('express');
 const router = express.Router();
 const room = require('../models/room.model');
 const equipment = require('../models/equipment.model');
+const mongoose = require('mongoose');
+const validateId = require('../validateObjectId');
 
 router.get('/', function (req, res) {
-  room.find({}, (error, rooms) => {
-    if (error) {
-      return res.status(400).json(error);
-    }
-    return res.status(200).json(rooms);
-  });
+  room.find({})
+    .populate('equipment')
+    .exec(((error, rooms) => {
+      if (error) {
+        return res.status(400).json(error);
+      }
+      return res.status(200).json(rooms);
+    }));
 });
 
 router.get('/:id', function (req, res) {
+  if (!validateId(req.params.id)) {
+    return res.status(400).json('Invalid room id');
+  }
   room.findById(req.params.id, (error, room) => {
     if (error) {
       return res.status(500).json(error);
@@ -26,9 +33,9 @@ router.post('/', function (req, res) {
   // we need to make sure all the equipment ids passed by the user are valid  
   equipmentArray.map((item, index) => {
     equipment.findById(item, (error, item) => {
-      if (error) { 
+      if (error) {
         equipmentArray.pop(index);
-       }
+      }
       if (item === null) {
         equipmentArray.pop(index);
       }
@@ -49,6 +56,9 @@ router.post('/', function (req, res) {
 });
 
 router.delete('/:id', function (req, res) {
+  if (!validateId(req.params.id)) {
+    return res.status(400).json('Invalid room id');
+  }
   room.findByIdAndRemove(req.params.id, (error, room) => {
     if (error) {
       return res.status(500).json(error);
@@ -58,10 +68,16 @@ router.delete('/:id', function (req, res) {
 });
 
 router.patch('/:id', function (req, res) {
+  if (!validateId(req.params.id)) {
+    return res.status(400).json('Invalid room id');
+  }
   return res.status(200).send('room updated');
 });
 
 router.put('/:id', function (req, res) {
+  if (!validateId(req.params.id)) {
+    return res.status(400).json('Invalid room id');
+  }
   return res.status(200).send('room updated');
 });
 

@@ -24,9 +24,14 @@ let roomSchema = new mongoose.Schema({
     lowercase: true
   },
   equipment: {
-    type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'equipment' }], // defined relationship
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'equipment'
+      }
+    ], // defined relationship
     required: false
   }
 });
 
-module.exports = mongoose.model('Room', roomSchema);
+module.exports = mongoose.model('room', roomSchema);
