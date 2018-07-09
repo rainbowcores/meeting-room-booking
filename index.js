@@ -36,6 +36,7 @@ if (app.get('env') === 'development') {
   ));
 }
 
+// set up routing
 app.use('/api/users', userRouter);
 app.use('/api/rooms', roomRouter);
 app.use('/api/bookings', bookingRouter);

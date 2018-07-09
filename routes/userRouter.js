@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const user = require('../models/user.model');
-const chalk = require('chalk');
-const mongoose = require('mongoose');
 
 router.get('/', (req, res) => {
   user.find({}, (error, users) => {
@@ -54,4 +52,4 @@ router.put('/:id', (req, res) => {
   return res.status(200).send('user updated');
 });
 
-module.exports = router;
+const userRouter = module.exports = router;

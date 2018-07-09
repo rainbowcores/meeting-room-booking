@@ -24,7 +24,7 @@ let roomSchema = new mongoose.Schema({
     lowercase: true
   },
   equipment: {
-    type: [{ type: schema.Types.ObjectId, ref: 'equipment' }], // defined relationship
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'equipment' }], // defined relationship
     required: false
   }
 });
