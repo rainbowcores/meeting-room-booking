@@ -24,7 +24,11 @@ router.get('/:id', (req, res) => {
   });
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+  const validUser = await user.findOne({ email: req.body.email });
+  if (validUser) {
+    return res.status(400).send('The email is already registered by another user account');
+  }
   new user({
     email: req.body.email,
     password: req.body.password,
