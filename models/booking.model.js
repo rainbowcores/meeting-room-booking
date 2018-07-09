@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 
 let bookingSchema = new mongoose.Schema({
-  room_id: {
+  roomId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'room'

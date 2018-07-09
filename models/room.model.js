@@ -27,7 +27,7 @@ let roomSchema = new mongoose.Schema({
     type: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'equipment'
+        ref: 'equipment',
       }
     ], // defined relationship
     required: false

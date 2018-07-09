@@ -1,0 +1,367 @@
+{
+	"id": "c58d2eff-a647-4771-9c58-03de71fd3df7",
+	"name": "MeetingRoomBooking",
+	"description": "",
+	"auth": null,
+	"events": null,
+	"variables": [],
+	"order": [],
+	"folders_order": [
+		"63e4871b-e912-4cc4-a50b-89c4cf5fc0a6",
+		"ef8cc52d-0823-4eb6-9015-04f1dbf2cfc3",
+		"f5322230-b14d-4e16-83f6-dbca1eb910b9",
+		"2ee3a9a1-0304-4668-ba24-e7aae8466490"
+	],
+	"folders": [
+		{
+			"id": "f5322230-b14d-4e16-83f6-dbca1eb910b9",
+			"name": "booking",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "c58d2eff-a647-4771-9c58-03de71fd3df7",
+			"folder": null,
+			"order": [
+				"59ffcbf5-49ec-44f5-bf1a-348cd9965f12",
+				"0b801ec1-6ca0-47ab-b4fd-76d90917aa35",
+				"8aa0c6fb-c686-4785-b444-85b3a81fa2de"
+			],
+			"folders_order": []
+		},
+		{
+			"id": "2ee3a9a1-0304-4668-ba24-e7aae8466490",
+			"name": "equipment",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "c58d2eff-a647-4771-9c58-03de71fd3df7",
+			"folder": null,
+			"order": [
+				"21a8cb72-ea16-4165-88b8-fcaf3631ddc7",
+				"8f70fd8c-6e87-4879-89c9-f7e4f0b85d3c",
+				"19da7d23-081e-4228-8994-3b04667ce082",
+				"94d4b702-1c60-49f1-b80c-f69b75a17df0"
+			],
+			"folders_order": []
+		},
+		{
+			"id": "ef8cc52d-0823-4eb6-9015-04f1dbf2cfc3",
+			"name": "room",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "c58d2eff-a647-4771-9c58-03de71fd3df7",
+			"folder": null,
+			"order": [
+				"fcbd94fb-de7c-4824-867e-c7a5c37c53b5",
+				"83905309-66ab-44e1-964c-c2e2f19609bc",
+				"89fb4dd7-e08d-40d7-8be4-4cb4ee6886a7",
+				"e6fa536f-f52d-4914-9332-ccbe5034d7b2"
+			],
+			"folders_order": []
+		},
+		{
+			"id": "63e4871b-e912-4cc4-a50b-89c4cf5fc0a6",
+			"name": "users",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "c58d2eff-a647-4771-9c58-03de71fd3df7",
+			"folder": null,
+			"order": [
+				"3f292e53-2672-4660-8343-c2f8e9d528df",
+				"0e6c4ca9-f345-4b3a-b548-862c9c0d2e2c",
+				"289862c3-f78c-4d4a-b3f7-8db56135f10e"
+			],
+			"folders_order": []
+		}
+	],
+	"requests": [
+		{
+			"id": "0b801ec1-6ca0-47ab-b4fd-76d90917aa35",
+			"name": "localhost:3000/api/bookings",
+			"url": "localhost:3000/api/bookings",
+			"description": "get all bookings",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "f5322230-b14d-4e16-83f6-dbca1eb910b9",
+			"rawModeData": "{\n\t\"room_id\": \"5b37d98a1523bf6b80106225\",\n\t\"startTime\": \"1530434545068\",\n\t\"userId\": \"5b37d5684c59c669eb4af518\",\n\t\"details\": \"sync with CEO\",\n\t\"stopTime\": \"1530434545070\"\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "0e6c4ca9-f345-4b3a-b548-862c9c0d2e2c",
+			"name": "localhost:3000/api/users/:id",
+			"url": "localhost:3000/api/users/id",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "63e4871b-e912-4cc4-a50b-89c4cf5fc0a6",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "19da7d23-081e-4228-8994-3b04667ce082",
+			"name": "localhost:3000/api/equipment",
+			"url": "localhost:3000/api/equipment",
+			"description": "create equipment",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "2ee3a9a1-0304-4668-ba24-e7aae8466490",
+			"rawModeData": "{\n\t\"name\": \"projector\",\n\t\"details\": \"blue one room 3b\"\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "21a8cb72-ea16-4165-88b8-fcaf3631ddc7",
+			"name": "localhost:3000/api/equipment",
+			"url": "localhost:3000/api/equipment",
+			"description": "get all equipment",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "2ee3a9a1-0304-4668-ba24-e7aae8466490",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "289862c3-f78c-4d4a-b3f7-8db56135f10e",
+			"name": "localhost:3000/api/users",
+			"url": "localhost:3000/api/users",
+			"description": "create new user",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "63e4871b-e912-4cc4-a50b-89c4cf5fc0a6",
+			"rawModeData": "{\n\t\"password\": \"password\",\n\t\"email\": \"ssdsd@gsjasd.com\",\n\t\"firstname\": \"andrew\",\n\t\"lastname\": \"wambua\",\n\t\"role\": \"admin\"\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "3f292e53-2672-4660-8343-c2f8e9d528df",
+			"name": "localhost:3000/api/users",
+			"url": "localhost:3000/api/users",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "63e4871b-e912-4cc4-a50b-89c4cf5fc0a6",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "59ffcbf5-49ec-44f5-bf1a-348cd9965f12",
+			"name": "localhost:3000/api/bookings",
+			"url": "localhost:3000/api/bookings",
+			"description": "create booking",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "f5322230-b14d-4e16-83f6-dbca1eb910b9",
+			"rawModeData": "{\n\t\"room_id\": \"5b37d98a1523bf6b80106225\",\n\t\"startTime\": \"1530434545068\",\n\t\"userId\": \"5b37d5684c59c669eb4af518\",\n\t\"details\": \"sync with CEO\",\n\t\"stopTime\": \"1530434545070\"\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "83905309-66ab-44e1-964c-c2e2f19609bc",
+			"name": "localhost:3000/api/rooms/:id",
+			"url": "localhost:3000/api/rooms/id",
+			"description": "get specific room",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "ef8cc52d-0823-4eb6-9015-04f1dbf2cfc3",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "89fb4dd7-e08d-40d7-8be4-4cb4ee6886a7",
+			"name": "localhost:3000/api/rooms",
+			"url": "localhost:3000/api/rooms",
+			"description": "create room",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "ef8cc52d-0823-4eb6-9015-04f1dbf2cfc3",
+			"rawModeData": "{\n\t\"location\": \"firstfloor\",\n\t\"capacity\": 5,\n\t\"status\": \"available\",\n\t\"name\": \"pink room\",\n\t\"equipment\": []\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "8aa0c6fb-c686-4785-b444-85b3a81fa2de",
+			"name": "localhost:3000/api/bookings",
+			"url": "localhost:3000/api/bookings/5b37ec8468d3be70965a7765",
+			"description": "get specific bookings",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "f5322230-b14d-4e16-83f6-dbca1eb910b9",
+			"rawModeData": "{\n\t\"room_id\": \"5b37d98a1523bf6b80106225\",\n\t\"startTime\": \"1530434545068\",\n\t\"userId\": \"5b37d5684c59c669eb4af518\",\n\t\"details\": \"sync with CEO\",\n\t\"stopTime\": \"1530434545070\"\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "8f70fd8c-6e87-4879-89c9-f7e4f0b85d3c",
+			"name": "localhost:3000/api/equipment/:id",
+			"url": "localhost:3000/api/equipment/5b37e7a483ba4d6e5f5fbbe1",
+			"description": "get specific equipment",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "2ee3a9a1-0304-4668-ba24-e7aae8466490",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "94d4b702-1c60-49f1-b80c-f69b75a17df0",
+			"name": "localhost:3000/api/equipment/:id",
+			"url": "localhost:3000/api/equipment/5b37e7a483ba4d6e5f5fbbe1",
+			"description": "delete equipment",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "2ee3a9a1-0304-4668-ba24-e7aae8466490",
+			"rawModeData": "{\n\t\"name\": \"projector\",\n\t\"details\": \"blue one room 3b\"\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "e6fa536f-f52d-4914-9332-ccbe5034d7b2",
+			"name": "localhost:3000/api/rooms/:id",
+			"url": "localhost:3000/api/rooms/5b37d98a1523bf6b80106225",
+			"description": "delete room",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "ef8cc52d-0823-4eb6-9015-04f1dbf2cfc3",
+			"rawModeData": "{\n\t\"name\": \"projector\",\n\t\"details\": \"blue one room 3b\"\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "fcbd94fb-de7c-4824-867e-c7a5c37c53b5",
+			"name": "localhost:3000/api/rooms",
+			"url": "localhost:3000/api/rooms",
+			"description": "get all rooms\n",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "ef8cc52d-0823-4eb6-9015-04f1dbf2cfc3",
+			"headers": "",
+			"pathVariables": {}
+		}
+	]
+}
