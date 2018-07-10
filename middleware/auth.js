@@ -4,14 +4,14 @@ const jwt = require('jsonwebtoken');
 function authenticate(req, res, next) {
   const token = req.header('x-auth-token');
   if (!token) {
-    return res.status(403).send('Authentication token nor provided');
+    return res.status(403).send('Access Denied. Invalid authentication token');
   }
   try {
-    const validToken = jwt.decode(header, config.get('jwtPrivateKey'));
+    const validToken = jwt.decode(token, config.get('jwtPrivateKey'));
     req.user = validToken;
     next();
   } catch (exception) {
-    return res.status(403).send('Authentication token is invalid');
+    return res.status(403).send('Access Denied. Invalid authentication token');
   }
 }
 

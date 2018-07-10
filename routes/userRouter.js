@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const user = require('../models/user.model');
 const validateId = require('../validateObjectId');
+const authMiddleware = require('../middleware/auth');
 
-router.get('/', (req, res) => {
+router.get('/', authMiddleware, (req, res) => {
   user.find({}, (error, users) => {
     if (error) {
       return res.status(400).json(error);
@@ -12,7 +13,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', authMiddleware, (req, res) => {
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid user id');
   }
@@ -24,7 +25,7 @@ router.get('/:id', (req, res) => {
   });
 });
 
-router.post('/', async (req, res) => {
+router.post('/', authMiddleware, async (req, res) => {
   const validUser = await user.findOne({ email: req.body.email });
   if (validUser) {
     return res.status(400).send('The email is already registered by another user account');
@@ -43,7 +44,7 @@ router.post('/', async (req, res) => {
   }));
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', authMiddleware, (req, res) => {
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid user id');
   }
@@ -55,14 +56,14 @@ router.delete('/:id', (req, res) => {
   });
 });
 
-router.patch('/:id', (req, res) => {
+router.patch('/:id', authMiddleware, (req, res) => {
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid user id');
   }
   return res.status(200).send('user updated');
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', authMiddleware, (req, res) => {
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid user id');
   }
