@@ -9,6 +9,12 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'),
 const config = require('config');
 const startUpDebugger = require('debug')('app:startup');
 const dbDebugger = require('debug')('app:db');
+const jwtDebugger = require('debug')('app:jwt');
+
+if (!config.get('jwtPrivateKey')) {
+  jwtDebugger(chalk.red('ERROR JWT PRIVATE KEY MUST BE SET IN ENV VARS FOR APPLICATION TO WORK'));
+  process.exit(0);
+}
 
 mongoose.connect('mongodb://localhost/meetingroombooking')
   .then(dbDebugger(chalk.gray('connected to MongoDB')))
@@ -21,6 +27,7 @@ const userRouter = require('./routes/userRouter');
 const roomRouter = require('./routes/roomRouter');
 const bookingRouter = require('./routes/bookingRouter');
 const equipmentRouter = require('./routes/equipmentRouter');
+const authRouter = require('./routes/authRouter');
 
 var app = express();
 app.use(express.json()); // only parse requests wih content-type json headers, sets results in req.body
@@ -41,6 +48,7 @@ app.use('/api/users', userRouter);
 app.use('/api/rooms', roomRouter);
 app.use('/api/bookings', bookingRouter);
 app.use('/api/equipment', equipmentRouter);
+app.use('/api/auth', authRouter);
 
 app.get('/', (req, res) => {
   res.send('API');

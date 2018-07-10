@@ -20,20 +20,23 @@ To get your the API started and running locally, do the following
 
 ## Develoment Environments
 
-Now that you have set up the project and have it running, it is important to note that development and production environments have been configured differently.
+* 
+	Note that yor application will not run if you havent configured an environment variable with the name **MBR_jwtPrivateKey**. On mac, use the command ``` export MBR_jwtPrivateKey=keyThatOnlyYouKnowAbout```. That key is used to sign JWT tokens, you should not share this key with anyone. 
 
-To set the project up for a **production** environment, make sure to do the following
+* To set the project up for a **production** environment, make sure to do the following
 
-```
-* EXPORT env = production
-* set any other custom environment variables in `/meeting-room-booking/config/custom-environment-variables.json`
-```
+	```
+	* EXPORT env = production
+	* set any other custom environment variables in `/meeting-room-booking/config/custom-environment-variables.json`
+	```
+	This will among other things, disable error logging access.log file
 
 Refer to <https://codingsans.com/blog/node-config-best-practices> on instructions to properly configure environments for your **NodeJS** application
 
 If you want to enable error logging in the console, add ``` export DEBUG=app:* ```
 
-Check **index.js** for the debug implementation from the debug module. Change the asterisk(*) to the name of the debugger you want to eneable. For more on using the module visit [it's page](https://www.npmjs.com/package/debug)
+Visit [Config module npm page](https://www.npmjs.com/package/debug) for more information about how to use the module
+
 
 ## API Documentation
 A postman collection has been provided along with the code for this project.

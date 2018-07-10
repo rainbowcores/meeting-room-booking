@@ -3,5 +3,6 @@
     "mail": {
         "host": "MBR_MAIL_HOST",
         "password": "MBR_MAIL_PASSWORD"
-    }
+    },
+    "jwtPrivateKey": "MBR_jwtPrivateKey"
 }
