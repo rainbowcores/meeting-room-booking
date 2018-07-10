@@ -28,7 +28,7 @@ router.post('/login', async (req, res) => {
     lastname: user.lastname,
     role: user.role
   }, config.get('jwtPrivateKey'));
-  return res.status(200).send(token);
+  return res.header('x-auth-token', token).status(200).send();
 });
 
 module.exports = router;

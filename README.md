@@ -3,7 +3,7 @@ This is the API for the meeting room booking application
 
 The project has been developed using **NodeJS**
 
-The project also relies on MongoDB with Mongoose as the ODM. Errors are only logged during development. The errors are also configured to load in standard Apache format.
+The project also relies on MongoDB with Mongoose as the ODM.
 
 The project follows standard **MVC** architecture
 
@@ -29,7 +29,7 @@ To get your the API started and running locally, do the following
 	* EXPORT env = production
 	* set any other custom environment variables in `/meeting-room-booking/config/custom-environment-variables.json`
 	```
-	This will among other things, disable error logging access.log file
+	This will among other things, disable error logging to the access.log file
 
 Refer to <https://codingsans.com/blog/node-config-best-practices> on instructions to properly configure environments for your **NodeJS** application
 
