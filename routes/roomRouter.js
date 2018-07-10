@@ -29,6 +29,10 @@ router.get('/:id', authMiddleware, (req, res) => {
 });
 
 router.post('/', authMiddleware, (req, res) => {
+  if (req.user.role !== 'admin') {
+    // only admins can create new rooms
+    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
+  }
   let equipmentArray = req.body.equipment;
   // we need to make sure all the equipment ids passed by the user are valid  
   equipmentArray.map((item, index) => {
@@ -59,6 +63,10 @@ router.post('/', authMiddleware, (req, res) => {
 });
 
 router.delete('/:id', authMiddleware, (req, res) => {
+  if (req.user.role !== 'admin') {
+    // only admins can delete rooms
+    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
+  }
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid room id');
   }
@@ -71,6 +79,10 @@ router.delete('/:id', authMiddleware, (req, res) => {
 });
 
 router.patch('/:id', authMiddleware, (req, res) => {
+  if (req.user.role !== 'admin') {
+    // only admins can update room definitions
+    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
+  }
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid room id');
   }
@@ -78,6 +90,10 @@ router.patch('/:id', authMiddleware, (req, res) => {
 });
 
 router.put('/:id', authMiddleware, (req, res) => {
+  if (req.user.role !== 'admin') {
+    // only admins can update room definitions
+    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
+  }
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid room id');
   }

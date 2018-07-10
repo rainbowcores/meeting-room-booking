@@ -26,6 +26,10 @@ router.get('/:id', authMiddlware, (req, res) => {
 });
 
 router.post('/', authMiddlware, (req, res) => {
+  if (req.user.role !== 'admin') {
+    // only admins can create new equipment
+    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
+  }
   new equipment({
     name: req.body.name,
     details: req.body.details
@@ -38,6 +42,10 @@ router.post('/', authMiddlware, (req, res) => {
 });
 
 router.delete('/:id', authMiddlware, (req, res) => {
+  if (req.user.role !== 'admin') {
+    // only admins can delete equipment
+    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
+  }
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid equipment id');
   }
@@ -50,6 +58,10 @@ router.delete('/:id', authMiddlware, (req, res) => {
 });
 
 router.patch('/:id', authMiddlware, (req, res) => {
+  if (req.user.role !== 'admin') {
+    // only admins can update equipment
+    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
+  }
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid equipment id');
   }
@@ -57,6 +69,10 @@ router.patch('/:id', authMiddlware, (req, res) => {
 });
 
 router.put('/:id', authMiddlware, (req, res) => {
+  if (req.user.role !== 'admin') {
+    // only admins can update equipment
+    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
+  }
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid equipment id');
   }

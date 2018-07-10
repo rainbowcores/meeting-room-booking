@@ -37,7 +37,7 @@ let userSchema = new mongoose.Schema({
     lowercase: true
   },
   role: {
-    type: String,
+    type: String, // TODO: determine whether this needs to be boolean or String to represent different possible roles
     required: { true: 'You need to provide a value for the field lastname' },
     enum: ['admin', 'staff'],
     lowercase: true

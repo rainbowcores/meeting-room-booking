@@ -4,7 +4,7 @@ const booking = require('../models/booking.model');
 const validateId = require('../validateObjectId');
 const authMiddleware = require('../middleware/auth');
 
-router.get('/', authMiddleware, (req, res) =>  {
+router.get('/', authMiddleware, async (req, res) => {
   booking.find({})
     .populate('roomId', '-equipment')
     .populate('userId', '-password -role')
@@ -16,7 +16,7 @@ router.get('/', authMiddleware, (req, res) =>  {
     });
 });
 
-router.get('/:id', authMiddleware, (req, res) =>  {
+router.get('/:id', authMiddleware, async (req, res) => {
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid booking id');
   }
@@ -28,7 +28,7 @@ router.get('/:id', authMiddleware, (req, res) =>  {
   });
 });
 
-router.post('/', authMiddleware, (req, res) =>  {
+router.post('/', authMiddleware, async (req, res) => {
   new booking({
     roomId: req.body.room_id,
     startTime: req.body.startTime,
@@ -43,9 +43,14 @@ router.post('/', authMiddleware, (req, res) =>  {
   }));
 });
 
-router.delete('/:id', authMiddleware, (req, res) =>  {
+router.delete('/:id', authMiddleware, async (req, res) => {
+  // check that the supplied id is valid
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid booking id');
+  }
+  const response = await validateBooking(req.params.id, req);
+  if (response) {
+    return res.status(response.status).send(response.message);
   }
   booking.findByIdAndRemove(req.params.id, (error, booking) => {
     if (error) {
@@ -55,18 +60,54 @@ router.delete('/:id', authMiddleware, (req, res) =>  {
   });
 });
 
-router.patch('/:id', authMiddleware, (req, res) =>  {
+router.patch('/:id', authMiddleware, async (req, res) => {
+  // check that the supplied id is valid
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid booking id');
+  }
+  const response = await validateBooking(req.params.id, req);
+  if (response) {
+    return res.status(response.status).send(response.message);
+  }
+  if (req.user.role !== 'admin') {
+    // only admins can update booking details
+    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
   }
   return res.status(200).send('booking updated');
 });
 
-router.put('/:id', authMiddleware, (req, res) =>  {
+router.put('/:id', authMiddleware, async (req, res) => {
+  // check that the supplied id is valid
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid booking id');
   }
+  const response = await validateBooking(req.params.id, req);
+  if (response) {
+    return res.status(response.status).send(response.message);
+  }
+  if (req.user.role !== 'admin') {
+    // only admins can update booking details
+    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
+  }
   return res.status(200).send('booking updated');
 });
+
+async function validateBooking(bookingId, req) {
+  const requestedBooking = await booking.findById(bookingId).exec();
+  if (!requestedBooking) {
+    return {
+      status: 500,
+      message: "Booking not found"
+    }
+  }
+  if (requestedBooking.userId !== req.user._id) {
+    // user attempting to delete another users booking
+    return {
+      status: 403,
+      message: "Unauthorized access. Cannot delete this booking"
+    }
+  }
+  return null;
+}
 
 module.exports = router;

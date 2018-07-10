@@ -5,6 +5,10 @@ const validateId = require('../validateObjectId');
 const authMiddleware = require('../middleware/auth');
 
 router.get('/', authMiddleware, (req, res) => {
+  if (req.user.role !== 'admin') {
+    // only admins can get all users
+    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
+  }
   user.find({}, (error, users) => {
     if (error) {
       return res.status(400).json(error);
@@ -25,7 +29,7 @@ router.get('/:id', authMiddleware, (req, res) => {
   });
 });
 
-router.post('/', authMiddleware, async (req, res) => {
+router.post('/', async (req, res) => {
   const validUser = await user.findOne({ email: req.body.email });
   if (validUser) {
     return res.status(400).send('The email is already registered by another user account');
@@ -45,6 +49,10 @@ router.post('/', authMiddleware, async (req, res) => {
 });
 
 router.delete('/:id', authMiddleware, (req, res) => {
+  if (req.user.role !== 'admin') {
+    // only admins can get all users
+    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
+  }
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid user id');
   }
@@ -57,6 +65,11 @@ router.delete('/:id', authMiddleware, (req, res) => {
 });
 
 router.patch('/:id', authMiddleware, (req, res) => {
+  // make sure user is updating their own account details
+  if (req.user._id !== req.params.id) {
+    // only admins can get all users
+    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
+  }
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid user id');
   }
@@ -64,6 +77,11 @@ router.patch('/:id', authMiddleware, (req, res) => {
 });
 
 router.put('/:id', authMiddleware, (req, res) => {
+  // make sure user is updating their own account details
+  if (req.user._id !== req.params.id) {
+    // only admins can get all users
+    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
+  }
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid user id');
   }
