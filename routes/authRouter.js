@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const user = require('../models/user.model');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const config = require('config');
 
 // logout user
 router.post('/logout', async (req, res) => {
@@ -21,13 +19,7 @@ router.post('/login', async (req, res) => {
     return res.status(400).send('Invalid user credentials');
   }
   // create JWT and send to user
-  const token = jwt.sign({
-    _id: user._id,
-    email: user.email,
-    firstname: user.firstname,
-    lastname: user.lastname,
-    role: user.role
-  }, config.get('jwtPrivateKey'));
+  const token = validUser.generateAuthToken(); 
   return res.header('x-auth-token', token).status(200).send();
 });
 

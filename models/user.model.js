@@ -1,6 +1,8 @@
 let mongoose = require('mongoose');
 const bcrypt = require('bcrypt'); // for hashing passwords
 const SALT_WORK_FACTOR = 10;
+const config = require('config');
+const jwt = require('jsonwebtoken');
 
 let userSchema = new mongoose.Schema({
   password: {
@@ -9,7 +11,7 @@ let userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: { true: 'Email is required'},
+    required: { true: 'Email is required' },
     unique: true,
     validate: {
       validator: function (email) {
@@ -66,5 +68,15 @@ userSchema.methods.comparePassword = function (password, cb) {
     cb(null, isMatch);
   });
 };
+
+userSchema.methods.generateAuthToken = function () {
+  return jwt.sign({
+    _id: this._id,
+    email: this.email,
+    firstname: this.firstname,
+    lastname: this.lastname,
+    role: this.role
+  }, config.get('jwtPrivateKey'));
+}
 
 module.exports = mongoose.model('user', userSchema);
