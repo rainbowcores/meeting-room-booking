@@ -15,6 +15,8 @@ To get your the API started and running locally, do the following
 * git clone https://github.com/rainbowcores/meeting-room-booking
 * cd into the folder
 * run npm install
+* export DEBUG = app:* # show all app errors
+* export MBR_jwtPrivateKey= keyThatOnlyYouKnowAbout # JWT private key must be set
 * run nodemon index.js
 ```
 
