@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const room = require('../models/room.model');
 const equipment = require('../models/equipment.model');
-const mongoose = require('mongoose');
 const validateId = require('../validateObjectId');
+const authMiddleware = require('../middleware/auth');
 
-router.get('/', function (req, res) {
+router.get('/', authMiddleware, (req, res) => {
   room.find({})
     .populate('equipment')
     .exec(((error, rooms) => {
@@ -16,7 +16,7 @@ router.get('/', function (req, res) {
     }));
 });
 
-router.get('/:id', function (req, res) {
+router.get('/:id', authMiddleware, (req, res) => {
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid room id');
   }
@@ -28,11 +28,15 @@ router.get('/:id', function (req, res) {
   });
 });
 
-router.post('/', function (req, res) {
+router.post('/', authMiddleware, (req, res) => {
+  if (req.user.role !== 'admin') {
+    // only admins can create new rooms
+    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
+  }
   let equipmentArray = req.body.equipment;
   // we need to make sure all the equipment ids passed by the user are valid  
   equipmentArray.map((item, index) => {
-    if(!validateId(item)) {
+    if (!validateId(item)) {
       return res.status(400).json('Provided invalid equipment ID');
     }
     equipment.findById(item, (error, item) => {
@@ -58,7 +62,11 @@ router.post('/', function (req, res) {
   }));
 });
 
-router.delete('/:id', function (req, res) {
+router.delete('/:id', authMiddleware, (req, res) => {
+  if (req.user.role !== 'admin') {
+    // only admins can delete rooms
+    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
+  }
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid room id');
   }
@@ -70,14 +78,22 @@ router.delete('/:id', function (req, res) {
   });
 });
 
-router.patch('/:id', function (req, res) {
+router.patch('/:id', authMiddleware, (req, res) => {
+  if (req.user.role !== 'admin') {
+    // only admins can update room definitions
+    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
+  }
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid room id');
   }
   return res.status(200).send('room updated');
 });
 
-router.put('/:id', function (req, res) {
+router.put('/:id', authMiddleware, (req, res) => {
+  if (req.user.role !== 'admin') {
+    // only admins can update room definitions
+    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
+  }
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid room id');
   }

@@ -10,9 +10,23 @@
 		"63e4871b-e912-4cc4-a50b-89c4cf5fc0a6",
 		"ef8cc52d-0823-4eb6-9015-04f1dbf2cfc3",
 		"f5322230-b14d-4e16-83f6-dbca1eb910b9",
-		"2ee3a9a1-0304-4668-ba24-e7aae8466490"
+		"2ee3a9a1-0304-4668-ba24-e7aae8466490",
+		"75247183-7add-4952-b7ba-05f568ff7e49"
 	],
 	"folders": [
+		{
+			"id": "75247183-7add-4952-b7ba-05f568ff7e49",
+			"name": "auth",
+			"description": "Authentication links",
+			"auth": null,
+			"events": null,
+			"collection": "c58d2eff-a647-4771-9c58-03de71fd3df7",
+			"folder": null,
+			"order": [
+				"9ba8d484-2607-4a95-81f2-b43dd370a5cb"
+			],
+			"folders_order": []
+		},
 		{
 			"id": "f5322230-b14d-4e16-83f6-dbca1eb910b9",
 			"name": "booking",
@@ -24,7 +38,8 @@
 			"order": [
 				"59ffcbf5-49ec-44f5-bf1a-348cd9965f12",
 				"0b801ec1-6ca0-47ab-b4fd-76d90917aa35",
-				"8aa0c6fb-c686-4785-b444-85b3a81fa2de"
+				"8aa0c6fb-c686-4785-b444-85b3a81fa2de",
+				"3f8074d7-73cd-430c-92c7-5333e33617d7"
 			],
 			"folders_order": []
 		},
@@ -71,7 +86,8 @@
 			"order": [
 				"3f292e53-2672-4660-8343-c2f8e9d528df",
 				"0e6c4ca9-f345-4b3a-b548-862c9c0d2e2c",
-				"289862c3-f78c-4d4a-b3f7-8db56135f10e"
+				"289862c3-f78c-4d4a-b3f7-8db56135f10e",
+				"871ae3e7-f227-4a09-b130-b4e63d09f732"
 			],
 			"folders_order": []
 		}
@@ -88,6 +104,12 @@
 				{
 					"key": "Content-Type",
 					"value": "application/json"
+				},
+				{
+					"key": "x-auth-token",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"method": "GET",
@@ -97,24 +119,37 @@
 			"events": [],
 			"folder": "f5322230-b14d-4e16-83f6-dbca1eb910b9",
 			"rawModeData": "{\n\t\"room_id\": \"5b37d98a1523bf6b80106225\",\n\t\"startTime\": \"1530434545068\",\n\t\"userId\": \"5b37d5684c59c669eb4af518\",\n\t\"details\": \"sync with CEO\",\n\t\"stopTime\": \"1530434545070\"\n}",
-			"headers": "Content-Type: application/json\n",
+			"headers": "Content-Type: application/json\nx-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM\n",
 			"pathVariables": {}
 		},
 		{
 			"id": "0e6c4ca9-f345-4b3a-b548-862c9c0d2e2c",
 			"name": "localhost:3000/api/users/:id",
-			"url": "localhost:3000/api/users/id",
+			"url": "localhost:3000/api/users/5b37d5684c59c669eb4af518",
 			"description": "",
 			"data": null,
 			"dataMode": "params",
-			"headerData": [],
+			"headerData": [
+				{
+					"key": "x-auth-token",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
 			"method": "GET",
 			"pathVariableData": [],
 			"queryParams": [],
 			"auth": null,
 			"events": [],
 			"folder": "63e4871b-e912-4cc4-a50b-89c4cf5fc0a6",
-			"headers": "",
+			"headers": "x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM\nContent-Type: application/json\n",
 			"pathVariables": {}
 		},
 		{
@@ -128,6 +163,12 @@
 				{
 					"key": "Content-Type",
 					"value": "application/json"
+				},
+				{
+					"key": "x-auth-token",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"method": "POST",
@@ -137,7 +178,7 @@
 			"events": [],
 			"folder": "2ee3a9a1-0304-4668-ba24-e7aae8466490",
 			"rawModeData": "{\n\t\"name\": \"projector\",\n\t\"details\": \"blue one room 3b\"\n}",
-			"headers": "Content-Type: application/json\n",
+			"headers": "Content-Type: application/json\nx-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM\n",
 			"pathVariables": {}
 		},
 		{
@@ -147,14 +188,27 @@
 			"description": "get all equipment",
 			"data": null,
 			"dataMode": "params",
-			"headerData": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "x-auth-token",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM",
+					"description": "",
+					"enabled": true
+				}
+			],
 			"method": "GET",
 			"pathVariableData": [],
 			"queryParams": [],
 			"auth": null,
 			"events": [],
 			"folder": "2ee3a9a1-0304-4668-ba24-e7aae8466490",
-			"headers": "",
+			"headers": "Content-Type: application/json\nx-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM\n",
 			"pathVariables": {}
 		},
 		{
@@ -168,6 +222,12 @@
 				{
 					"key": "Content-Type",
 					"value": "application/json"
+				},
+				{
+					"key": "x-auth-token",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"method": "POST",
@@ -176,8 +236,8 @@
 			"auth": null,
 			"events": [],
 			"folder": "63e4871b-e912-4cc4-a50b-89c4cf5fc0a6",
-			"rawModeData": "{\n\t\"password\": \"password\",\n\t\"email\": \"ssdsd@gsjasd.com\",\n\t\"firstname\": \"andrew\",\n\t\"lastname\": \"wambua\",\n\t\"role\": \"admin\"\n}",
-			"headers": "Content-Type: application/json\n",
+			"rawModeData": "{\n\t\"password\": \"validpassword\",\n\t\"email\": \"amackzie@gmail.com\",\n\t\"firstname\": \"andrew\",\n\t\"lastname\": \"wambua\",\n\t\"role\": \"admin\"\n}",
+			"headers": "Content-Type: application/json\nx-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM\n",
 			"pathVariables": {}
 		},
 		{
@@ -187,14 +247,56 @@
 			"description": "",
 			"data": null,
 			"dataMode": "params",
-			"headerData": [],
+			"headerData": [
+				{
+					"key": "x-auth-token",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
 			"method": "GET",
 			"pathVariableData": [],
 			"queryParams": [],
 			"auth": null,
 			"events": [],
 			"folder": "63e4871b-e912-4cc4-a50b-89c4cf5fc0a6",
-			"headers": "",
+			"headers": "x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM\nContent-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "3f8074d7-73cd-430c-92c7-5333e33617d7",
+			"name": "localhost:3000/api/bookings",
+			"url": "localhost:3000/api/bookings/5b44a3682d146d0a1f5762b2",
+			"description": "delete a booking",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"key": "x-auth-token",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "f5322230-b14d-4e16-83f6-dbca1eb910b9",
+			"rawModeData": "{\n\t\"room_id\": \"5b37d98a1523bf6b80106225\",\n\t\"startTime\": \"1530434545068\",\n\t\"userId\": \"5b37d5684c59c669eb4af518\",\n\t\"details\": \"sync with CEO\",\n\t\"stopTime\": \"1530434545070\"\n}",
+			"headers": "Content-Type: application/json\nx-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM\n",
 			"pathVariables": {}
 		},
 		{
@@ -208,6 +310,12 @@
 				{
 					"key": "Content-Type",
 					"value": "application/json"
+				},
+				{
+					"key": "x-auth-token",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"method": "POST",
@@ -217,24 +325,67 @@
 			"events": [],
 			"folder": "f5322230-b14d-4e16-83f6-dbca1eb910b9",
 			"rawModeData": "{\n\t\"room_id\": \"5b37d98a1523bf6b80106225\",\n\t\"startTime\": \"1530434545068\",\n\t\"userId\": \"5b37d5684c59c669eb4af518\",\n\t\"details\": \"sync with CEO\",\n\t\"stopTime\": \"1530434545070\"\n}",
-			"headers": "Content-Type: application/json\n",
+			"headers": "Content-Type: application/json\nx-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM\n",
 			"pathVariables": {}
 		},
 		{
 			"id": "83905309-66ab-44e1-964c-c2e2f19609bc",
 			"name": "localhost:3000/api/rooms/:id",
-			"url": "localhost:3000/api/rooms/id",
+			"url": "localhost:3000/api/rooms/5b389c33845dd78338262a98",
 			"description": "get specific room",
 			"data": null,
 			"dataMode": "params",
-			"headerData": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "x-auth-token",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM",
+					"description": "",
+					"enabled": true
+				}
+			],
 			"method": "GET",
 			"pathVariableData": [],
 			"queryParams": [],
 			"auth": null,
 			"events": [],
 			"folder": "ef8cc52d-0823-4eb6-9015-04f1dbf2cfc3",
-			"headers": "",
+			"headers": "Content-Type: application/json\nx-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "871ae3e7-f227-4a09-b130-b4e63d09f732",
+			"name": "http://localhost:3000/api/users/5b4482e7548692620d7853ac",
+			"url": "http://localhost:3000/api/users/5b4482e7548692620d7853ac",
+			"description": "delete a user",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "x-auth-token",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "63e4871b-e912-4cc4-a50b-89c4cf5fc0a6",
+			"headers": "x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM\nContent-Type: application/json\n",
 			"pathVariables": {}
 		},
 		{
@@ -248,6 +399,12 @@
 				{
 					"key": "Content-Type",
 					"value": "application/json"
+				},
+				{
+					"key": "x-auth-token",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"method": "POST",
@@ -257,13 +414,13 @@
 			"events": [],
 			"folder": "ef8cc52d-0823-4eb6-9015-04f1dbf2cfc3",
 			"rawModeData": "{\n\t\"location\": \"firstfloor\",\n\t\"capacity\": 5,\n\t\"status\": \"available\",\n\t\"name\": \"pink room\",\n\t\"equipment\": []\n}",
-			"headers": "Content-Type: application/json\n",
+			"headers": "Content-Type: application/json\nx-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM\n",
 			"pathVariables": {}
 		},
 		{
 			"id": "8aa0c6fb-c686-4785-b444-85b3a81fa2de",
 			"name": "localhost:3000/api/bookings",
-			"url": "localhost:3000/api/bookings/5b37ec8468d3be70965a7765",
+			"url": "localhost:3000/api/bookings/5b44a3682d146d0a1f5762b2",
 			"description": "get specific bookings",
 			"data": [],
 			"dataMode": "raw",
@@ -271,6 +428,12 @@
 				{
 					"key": "Content-Type",
 					"value": "application/json"
+				},
+				{
+					"key": "x-auth-token",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"method": "GET",
@@ -280,24 +443,37 @@
 			"events": [],
 			"folder": "f5322230-b14d-4e16-83f6-dbca1eb910b9",
 			"rawModeData": "{\n\t\"room_id\": \"5b37d98a1523bf6b80106225\",\n\t\"startTime\": \"1530434545068\",\n\t\"userId\": \"5b37d5684c59c669eb4af518\",\n\t\"details\": \"sync with CEO\",\n\t\"stopTime\": \"1530434545070\"\n}",
-			"headers": "Content-Type: application/json\n",
+			"headers": "Content-Type: application/json\nx-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM\n",
 			"pathVariables": {}
 		},
 		{
 			"id": "8f70fd8c-6e87-4879-89c9-f7e4f0b85d3c",
 			"name": "localhost:3000/api/equipment/:id",
-			"url": "localhost:3000/api/equipment/5b37e7a483ba4d6e5f5fbbe1",
+			"url": "localhost:3000/api/equipment/5b3897f99ca0e580ac90146c",
 			"description": "get specific equipment",
 			"data": null,
 			"dataMode": "params",
-			"headerData": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "x-auth-token",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM",
+					"description": "",
+					"enabled": true
+				}
+			],
 			"method": "GET",
 			"pathVariableData": [],
 			"queryParams": [],
 			"auth": null,
 			"events": [],
 			"folder": "2ee3a9a1-0304-4668-ba24-e7aae8466490",
-			"headers": "",
+			"headers": "Content-Type: application/json\nx-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM\n",
 			"pathVariables": {}
 		},
 		{
@@ -311,6 +487,12 @@
 				{
 					"key": "Content-Type",
 					"value": "application/json"
+				},
+				{
+					"key": "x-auth-token",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"method": "DELETE",
@@ -320,6 +502,29 @@
 			"events": [],
 			"folder": "2ee3a9a1-0304-4668-ba24-e7aae8466490",
 			"rawModeData": "{\n\t\"name\": \"projector\",\n\t\"details\": \"blue one room 3b\"\n}",
+			"headers": "Content-Type: application/json\nx-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "9ba8d484-2607-4a95-81f2-b43dd370a5cb",
+			"name": "localhost:3000/api/auth/login",
+			"url": "localhost:3000/api/auth/login",
+			"description": "Log a user in",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "75247183-7add-4952-b7ba-05f568ff7e49",
+			"rawModeData": "{\n\t\"email\": \"amackzie@gmail.com\",\n\t\"password\": \"validpassword\"\n}",
 			"headers": "Content-Type: application/json\n",
 			"pathVariables": {}
 		},
@@ -334,6 +539,12 @@
 				{
 					"key": "Content-Type",
 					"value": "application/json"
+				},
+				{
+					"key": "x-auth-token",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"method": "DELETE",
@@ -343,7 +554,7 @@
 			"events": [],
 			"folder": "ef8cc52d-0823-4eb6-9015-04f1dbf2cfc3",
 			"rawModeData": "{\n\t\"name\": \"projector\",\n\t\"details\": \"blue one room 3b\"\n}",
-			"headers": "Content-Type: application/json\n",
+			"headers": "Content-Type: application/json\nx-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM\n",
 			"pathVariables": {}
 		},
 		{
@@ -353,14 +564,21 @@
 			"description": "get all rooms\n",
 			"data": null,
 			"dataMode": "params",
-			"headerData": [],
+			"headerData": [
+				{
+					"key": "x-auth-token",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM",
+					"description": "",
+					"enabled": true
+				}
+			],
 			"method": "GET",
 			"pathVariableData": [],
 			"queryParams": [],
 			"auth": null,
 			"events": [],
 			"folder": "ef8cc52d-0823-4eb6-9015-04f1dbf2cfc3",
-			"headers": "",
+			"headers": "x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ0ODNjMzU0ODY5MjYyMGQ3ODUzYWQiLCJlbWFpbCI6ImFtYWNremllQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImFuZHJldyIsImxhc3RuYW1lIjoid2FtYnVhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTMxMjI0MzIwfQ.QLnlOciSWNCsdFOfTMYJy2SI-dKO1ZnnXq6NJ7RxPFM\n",
 			"pathVariables": {}
 		}
 	]
