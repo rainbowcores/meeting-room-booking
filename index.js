@@ -10,6 +10,7 @@ const config = require('config');
 const startUpDebugger = require('debug')('app:startup');
 const dbDebugger = require('debug')('app:db');
 const jwtDebugger = require('debug')('app:jwt');
+const morganDebugger = require('debug')('app:morgan');
 
 if (!config.get('jwtPrivateKey')) {
   jwtDebugger(chalk.red('ERROR JWT PRIVATE KEY MUST BE SET IN ENV VARS FOR APPLICATION TO WORK'));
@@ -33,14 +34,14 @@ var app = express();
 app.use(express.json()); // only parse requests wih content-type json headers, sets results in req.body
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-app.use(express.static('public')); // load static resources e.g images
 
-if (app.get('env') === 'development') {
+if (process.env.NODE_ENV === 'development') {
   // log with standard Apache type to a file access.log
   app.use(morgan(
     ':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"',
     { stream: accessLogStream }
   ));
+  morganDebugger(chalk.blue('Morgan started, Logging response outputs to access.log'));
 }
 
 // set up routing
@@ -54,7 +55,12 @@ app.get('/', (req, res) => {
   res.send('API');
 });
 
-app.listen(3000, function () {
+app.use(function (error, req, res, next) {
+  dbDebugger(error); // to disable this in production, change env to production
+  res.status(500).send('There was a problem processing your request. Please try again');
+});
+
+app.listen(process.env.PORT || 3000, function () {
   startUpDebugger(chalk.blue('Initializing project ....'));
   startUpDebugger(chalk.green('rainbowcores loading awesomeness ...'));
   startUpDebugger(chalk.yellow('Express project started :)'));

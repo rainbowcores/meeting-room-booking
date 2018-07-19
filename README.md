@@ -16,6 +16,7 @@ To get your the API started and running locally, do the following
 * cd into the folder
 * run npm install
 * export DEBUG = app:* # show all app errors
+* export NODE_ENV=development
 * export MBR_jwtPrivateKey= keyThatOnlyYouKnowAbout # JWT private key must be set
 * run nodemon index.js
 ```
@@ -28,7 +29,7 @@ To get your the API started and running locally, do the following
 * To set the project up for a **production** environment, make sure to do the following
 
 	```
-	* EXPORT env = production
+	* EXPORT NODE_ENV=production
 	* set any other custom environment variables in `/meeting-room-booking/config/custom-environment-variables.json`
 	```
 	This will among other things, disable error logging to the access.log file

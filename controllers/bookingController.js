@@ -46,7 +46,11 @@ exports.updateBooking = async function (req, res) {
   if (!validateId(req.params.id)) {
     return res.status(400).json('Invalid booking id');
   }
-  const response = await validateBooking(req.params.id, req);
+  try {
+    const response = await validateBooking(req.params.id, req);
+  } catch (error) {
+    res.status(500).send('There was an error processing your request');
+  }
   if (response) {
     return res.status(response.status).send(response.message);
   }
