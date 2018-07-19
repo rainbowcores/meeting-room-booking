@@ -3,80 +3,16 @@ const router = express.Router();
 const equipment = require('../models/equipment.model');
 const validateId = require('../validateObjectId');
 const authMiddlware = require('../middleware/auth');
+const equipmentController = require('../controllers/equipmentController');
 
-router.get('/', authMiddlware, (req, res) => {
-  equipment.find({}, (error, equipments) => {
-    if (error) {
-      return res.status(400).json(error);
-    }
-    return res.status(200).json(equipments);
-  });
-});
+router.get('/', authMiddlware, equipmentController.getAll);
 
-router.get('/:id', authMiddlware, (req, res) => {
-  if (!validateId(req.params.id)) {
-    return res.status(400).json('Invalid equipment id');
-  }
-  equipment.findById(req.params.id, (error, equipment) => {
-    if (error) {
-      return res.status(500).json(error);
-    }
-    return res.status(200).json(equipment);
-  });
-});
+router.get('/:id', authMiddlware, equipmentController.getEquipment);
 
-router.post('/', authMiddlware, (req, res) => {
-  if (req.user.role !== 'admin') {
-    // only admins can create new equipment
-    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
-  }
-  new equipment({
-    name: req.body.name,
-    details: req.body.details
-  }).save(((error, equipment) => {
-    if (error) {
-      return res.status(400).json(error);
-    }
-    return res.status(200).json(equipment);
-  }));
-});
+router.post('/', authMiddlware, equipmentController.createEquipment);
 
-router.delete('/:id', authMiddlware, (req, res) => {
-  if (req.user.role !== 'admin') {
-    // only admins can delete equipment
-    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
-  }
-  if (!validateId(req.params.id)) {
-    return res.status(400).json('Invalid equipment id');
-  }
-  equipment.findByIdAndRemove(req.params.id, (error, equipment) => {
-    if (error) {
-      return res.status(500).json(error);
-    }
-    return res.status(200).json(equipment);
-  });
-});
+router.delete('/:id', authMiddlware, equipmentController.deleteEquipment);
 
-router.patch('/:id', authMiddlware, (req, res) => {
-  if (req.user.role !== 'admin') {
-    // only admins can update equipment
-    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
-  }
-  if (!validateId(req.params.id)) {
-    return res.status(400).json('Invalid equipment id');
-  }
-  return res.status(200).send('equipment updated');
-});
-
-router.put('/:id', authMiddlware, (req, res) => {
-  if (req.user.role !== 'admin') {
-    // only admins can update equipment
-    return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
-  }
-  if (!validateId(req.params.id)) {
-    return res.status(400).json('Invalid equipment id');
-  }
-  return res.status(200).send('equipment updated');
-});
+router.put('/:id', authMiddlware, equipmentController.updateEquipment);
 
 module.exports = router;
