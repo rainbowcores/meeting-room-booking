@@ -5,8 +5,9 @@ const bcrypt = require('bcrypt');
 
 // login user
 router.post('/login', async (req, res) => {
+  let user;
   try {
-    const user = await User.findOne({ email: req.body.email });
+    user = await User.findOne({ email: req.body.email }); // var is hoisted
     if (!user) {
       return res.status(400).send('Invalid user credentials');
     }
@@ -14,12 +15,12 @@ router.post('/login', async (req, res) => {
     next(error);
   }
   try {
-    const validPassword = await bcrypt.compare(req.body.password, validUser.password);
+    const validPassword = await bcrypt.compare(req.body.password, user.password);
     if (!validPassword) {
       return res.status(400).send('Invalid user credentials');
     }
     // create JWT and send to user
-    const token = validUser.generateAuthToken();
+    const token = user.generateAuthToken();
     return res.header('x-auth-token', token).status(200).send();
   } catch (error) {
     next(error);

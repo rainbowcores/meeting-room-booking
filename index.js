@@ -88,7 +88,7 @@ app.get('/', (req, res) => {
 });
 
 app.use(function (error, req, res, next) {
-  logger.log('error', error);
+  logger.log('info', error);
   res.status(500).send('There was a problem processing your request. Please try again');
 });
 
