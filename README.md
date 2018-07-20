@@ -38,7 +38,7 @@ Refer to <https://codingsans.com/blog/node-config-best-practices> on instruction
 
 If you want to enable error logging in the console, add ``` export DEBUG=app:* ```
 
-Visit [Config module npm page](https://www.npmjs.com/package/debug) for more information about how to use the module
+Visit [Config module npm page](https://www.npmjs.com/package/config) for more information about how to use the module
 
 
 ## API Documentation

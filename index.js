@@ -2,10 +2,12 @@ const express = require('express');
 const chalk = require('chalk'); // lib for colors and interesting stuff
 const mongoose = require('mongoose');
 const cors = require('cors');
+const { createLogger, format, transports } = require('winston');
+const { combine, timestamp, colorize, json } = format;
 const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' }); // log requests to this file
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'logs', 'HTTP.log'), { flags: 'a' }); // log requests to this file
 const config = require('config');
 const startUpDebugger = require('debug')('app:startup');
 const dbDebugger = require('debug')('app:db');
@@ -35,14 +37,44 @@ app.use(express.json()); // only parse requests wih content-type json headers, s
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-if (process.env.NODE_ENV === 'development') {
-  // log with standard Apache type to a file access.log
-  app.use(morgan(
-    ':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"',
-    { stream: accessLogStream }
-  ));
-  morganDebugger(chalk.blue('Morgan started, Logging response outputs to access.log'));
-}
+process.on('unhandledRejection', (exception) => {
+  throw exception; // throw this so it can be caught by winston as an exception
+});
+
+// log with standard Apache type to a file access.log
+app.use(morgan(
+  ':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"',
+  { stream: accessLogStream }
+));
+morganDebugger(chalk.blue('Morgan started, Logging response outputs to access.log'));
+
+// we will use winston to log errors to other log files
+const logger = createLogger({
+  format: combine(
+    timestamp(),
+    colorize(),
+    json()
+  ),
+  transports: [
+    new transports.Console(),
+    new transports.File({
+      filename: path.join(__dirname, 'logs', 'errors.log'),
+      level: 'error'
+    }),
+    new transports.File({
+      filename: path.join(__dirname, 'logs', 'warn.log'),
+      level: 'warn'
+    }),
+    new transports.File({
+      filename: path.join(__dirname, 'logs', 'info.log'),
+      level: 'info'
+    }),
+  ],
+  exceptionHandlers: [
+    new transports.File({ filename: 'unhandledExceptions.log' })
+  ],
+  exitOnError: true // terminate process on error
+});
 
 // set up routing
 app.use('/api/users', userRouter);
@@ -56,7 +88,7 @@ app.get('/', (req, res) => {
 });
 
 app.use(function (error, req, res, next) {
-  dbDebugger(error); // to disable this in production, change env to production
+  logger.log('error', error);
   res.status(500).send('There was a problem processing your request. Please try again');
 });
 
