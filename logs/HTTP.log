@@ -192,3 +192,7 @@ unhandledRejection::1 - - [10/Jul/2018:09:56:39 +0000] "POST /api/users HTTP/1.1
 ::1 - - [20/Jul/2018:13:51:39 +0000] "POST /api/auth/login HTTP/1.1" 200 - "-" "PostmanRuntime/7.1.5"
 ::1 - - [20/Jul/2018:13:55:29 +0000] "POST /api/auth/login HTTP/1.1" 200 - "-" "PostmanRuntime/7.1.5"
 ::1 - - [20/Jul/2018:14:09:53 +0000] "POST /api/auth/login HTTP/1.1" 200 - "-" "PostmanRuntime/7.1.5"
+::1 - - [21/Jul/2018:09:10:21 +0000] "GET /api/users HTTP/1.1" 200 1167 "-" "PostmanRuntime/7.1.5"
+::1 - - [23/Jul/2018:07:36:16 +0000] "GET /api/users HTTP/1.1" 200 1167 "-" "PostmanRuntime/7.1.5"
+::1 - - [23/Jul/2018:07:36:23 +0000] "GET /api/users HTTP/1.1" 200 1167 "-" "PostmanRuntime/7.1.5"
+::1 - - [23/Jul/2018:07:36:33 +0000] "GET /api/users HTTP/1.1" 404 148 "-" "PostmanRuntime/7.1.5"
