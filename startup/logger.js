@@ -1,18 +1,18 @@
 const { createLogger, transports, format } = require('winston');
-const { combine, timestamp, colorize } = format;
 const path = require('path');
 
 module.exports = function () {
+
+  process.on('unhandledRejection', (exception) => {
+    throw exception; // throw this so it can be caught by winston as an exception
+  });
+
   // we will use winston to log errors to other log files
   return createLogger({
-    format: combine(
-      timestamp(),
-      colorize(),
-    ),
     transports: [
-      new transports.Console(),
+      new transports.Console({ format: true, colorize: true }),
       new transports.File({
-        filename: path.join(__dirname, '/logs', 'errors.log')
+        filename: path.join(__dirname, '../logs/', 'errors.log')
       })
     ],
     exceptionHandlers: [

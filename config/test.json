@@ -1,0 +1,4 @@
+{
+  "jwtPrivateKey": "randomkeyfortestingpurposes",
+  "db": "mongodb://localhost/meetingroombooking-test-database"
+}

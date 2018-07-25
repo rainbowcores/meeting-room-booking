@@ -1,7 +1,4 @@
 {
-    "mail": {
-        "host": "",
-        "password": ""
-    },
-    "jwtPrivateKey": ""
+    "jwtPrivateKey": "",
+    "db": "mongodb://localhost/meetingroombooking"
 }

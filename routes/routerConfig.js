@@ -18,9 +18,8 @@ module.exports = function (app, logger) {
   });
 
   app.use(function (error, req, res, next) {
-    logger.log('error', error); // log this to a logger file that was can parser/process later
+    logger.error(error); // log this to a logger file that was can parser/process later
     res.status(500).send('There was a problem processing your request. Please try again');
-    process.exit(1);
   });
 }
 
