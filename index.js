@@ -26,3 +26,5 @@ logger.info('Morgan started, Logging response outputs to access.log');
 app.listen(process.env.PORT || 3000, function () {
   logger.info('node process started');
 });
+  
+module.exports =  app;

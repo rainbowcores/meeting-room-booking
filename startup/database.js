@@ -3,7 +3,7 @@ const chalk = require('chalk'); // lib for colors and interesting stuff
 const config = require('config');
 
 module.exports = function () {
-  mongoose.connect(config.get('db'))
+  mongoose.connect(config.get('db')) // will change according to environment
     .then(console.log(chalk.gray('connected to MongoDB')))
   let db = mongoose.connection;
   db.on('error', (error) => { throw new Error(error); });
