@@ -6,13 +6,21 @@ module.exports = function () {
   process.on('unhandledRejection', (exception) => {
     throw exception; // throw this so it can be caught by winston as an exception
   });
-
   // we will use winston to log errors to other log files
   return createLogger({
     transports: [
-      new transports.Console({ format: true, colorize: true }),
+      new transports.Console(),
       new transports.File({
+        level: 'error',
         filename: path.join(__dirname, '../logs/', 'errors.log')
+      }),
+      new transports.File({
+        level: 'info',
+        filename: path.join(__dirname, '../logs/', 'info.log')
+      }),
+      new transports.File({
+        level: 'warn',
+        filename: path.join(__dirname, '../logs/', 'warnings.log')
       })
     ],
     exceptionHandlers: [
