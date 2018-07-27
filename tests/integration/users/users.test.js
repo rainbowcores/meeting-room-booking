@@ -15,36 +15,61 @@ describe('/api/users', () => {
     server.close();
   });
 
-  it('should return all users', async () => {
-    await User.collection.insertMany([payload, {
-      firstname: 'bbbbb', lastname: 'xbbbb', email: 'rand@x.com', role: 'admin', password: 'xxxxxxxxxx'
-    }]);
-    const response = await request(server)
-      .get('/api/users')
-      .set('x-auth-token', jwtToken);
-    expect(response.status).toBe(200);
-    expect(response.body.length).toBe(2);
+  describe('GET', () => {
+    it('should return all users', async () => {
+      await User.collection.insertMany([payload, {
+        firstname: 'bbbbb', lastname: 'xbbbb', email: 'rand@x.com', role: 'admin', password: 'xxxxxxxxxx'
+      }]);
+      const response = await request(server)
+        .get('/api/users')
+        .set('x-auth-token', jwtToken);
+      expect(response.status).toBe(200);
+      expect(response.body.length).toBe(2);
+    });
+
+    it('/api/users/:id should return user with specified id', async () => {
+      const user = new User(payload);
+      const expected = await user.save();
+      const response = await request(server)
+        .get('/api/users/' + user._id)
+        .set('x-auth-token', jwtToken);
+      expect(response.body).not.toBeNull();
+      expect(response.status).toBe(200);
+    });
+
+    it(' api/users/:id should error is we pass invalid user id', async () => {
+      const response = await request(server)
+        .get('/api/users/' + 1)
+        .set('x-auth-token', jwtToken);
+      expect(response.status).toBe(500);
+    });
   });
 
-  it('/api/users/:id should return user with specified id', async () => {
-    const user = new User(payload);
-    const expected = await user.save();
-    const response = await request(server)
-      .get('/api/users/' + user._id)
-      .set('x-auth-token', jwtToken);
-    expect(response.status).toBe(200);
-    expect(expected.firstname).toMatch(response.body.firstname);
-    expect(expected.lastname).toMatch(response.body.lastname);
+  fdescribe('POST', () => {
+    it('should create user', async () => {
+      const user = new User(payload);
+      await user.save();
+      const expected = await User.find({ email: user.email });
+      expect(expected).not.toBeNull();
+    });
+
+    it('should return duplicate email message if we add duplicate email', async () => {
+      const user = new User(payload);
+      await user.save(); // created user and saved to database
+      const response = await request(server)
+        .post('/api/users')
+        .send(payload);
+      expect(response.status).toBe(400);
+    });
+
   });
 
-  it(' api/users/:id should error is we pass invalid user id', async () => {
-    const response = await request(server)
-      .get('/api/users/' + 1)
-      .set('x-auth-token', jwtToken);
-    expect(response.status).toBe(500);
+  fdescribe('PUT', () => {
   });
-  
-  // it('should return duplicate email message if we add duplicate email addresses', () => { });
+
+  fdescribe('DELETE', () => {
+  });
+
   // it('should not return anything if we arent authorized', () => { });
   // it('should delete user', () => { });
   // it('cannot delete user if not admin', () => { });
