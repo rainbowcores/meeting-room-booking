@@ -1,20 +1,55 @@
-const app = require('../../../index');
 const request = require('supertest');
+const User = require('../../../models/user.model');
+const chalk = require('chalk');
+const payload = { firstname: 'aaaaa', lastname: 'xxxxx', email: 'a@a.com', password: 'xxxxxxxxx', role: 'admin' };
+const jwtToken = new User({ role: 'admin' }).generateAuthToken(); // create JWT token, we only need role
+let server;
 
-fdescribe('/api/users', () => {
-  it('should return all users', () => {
+describe('/api/users', () => {
+  beforeEach(async () => {
+    server = require('../../../index'); //require and run server
+    await User.remove({}); // empty user table in test db
   });
 
-  it('should return single user', () => {
+  afterEach(async () => {
+    server.close();
   });
 
-  it('should create user', () => {
+  it('should return all users', async () => {
+    await User.collection.insertMany([payload, {
+      firstname: 'bbbbb', lastname: 'xbbbb', email: 'rand@x.com', role: 'admin', password: 'xxxxxxxxxx'
+    }]);
+    const response = await request(server)
+      .get('/api/users')
+      .set('x-auth-token', jwtToken);
+    expect(response.status).toBe(200);
+    expect(response.body.length).toBe(2);
   });
 
-  it('should delete user', () => {
+  it('/api/users/:id should return user with specified id', async () => {
+    const user = new User(payload);
+    const expected = await user.save();
+    const response = await request(server)
+      .get('/api/users/' + user._id)
+      .set('x-auth-token', jwtToken);
+    expect(response.status).toBe(200);
+    expect(expected.firstname).toMatch(response.body.firstname);
+    expect(expected.lastname).toMatch(response.body.lastname);
   });
 
-  it('should update user', () => {
+  it(' api/users/:id should error is we pass invalid user id', async () => {
+    const response = await request(server)
+      .get('/api/users/' + 1)
+      .set('x-auth-token', jwtToken);
+    expect(response.status).toBe(500);
   });
-
+  
+  // it('should return duplicate email message if we add duplicate email addresses', () => { });
+  // it('should not return anything if we arent authorized', () => { });
+  // it('should delete user', () => { });
+  // it('cannot delete user if not admin', () => { });
+  // it('should make sure users cant delete other user\'s accounts', () => { });
+  // it('should update user', () => { });
+  // it('cannot update user if not admin', () => { });
+  // it('should make sure users cant update other user\'s accounts', () => { });
 });

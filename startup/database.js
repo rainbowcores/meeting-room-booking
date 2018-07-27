@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
-const chalk = require('chalk'); // lib for colors and interesting stuff
 const config = require('config');
 
-module.exports = function () {
+module.exports = function (logger) {
   mongoose.connect(config.get('db')) // will change according to environment
-    .then(console.log(chalk.gray('connected to MongoDB')))
+    .then(logger.info('connected to MongoDB'))
   let db = mongoose.connection;
   db.on('error', (error) => { throw new Error(error); });
 }

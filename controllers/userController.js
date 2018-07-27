@@ -1,5 +1,4 @@
 const User = require('../models/user.model');
-const validateId = require('../validateObjectId');
 
 exports.getAll = async function (req, res, next) {
   if (req.user.role !== 'admin') {
@@ -15,11 +14,11 @@ exports.getAll = async function (req, res, next) {
 }
 
 exports.getUser = async function (req, res, next) {
-  if (!validateId(req.params.id)) {
-    return res.status(400).json('Invalid user id');
-  }
   try {
     const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).send({ message: 'user not found' });
+    }
     res.status(200).send(user);
   } catch (error) {
     next(error);
@@ -54,9 +53,6 @@ exports.deleteUser = async function (req, res, next) {
     // only admins can get all users
     return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
   }
-  if (!validateId(req.params.id)) {
-    return res.status(400).json('Invalid user id');
-  }
   try {
     const user = await User.findByIdAndRemove(req.params.id);
     return res.status(200).json(user);
@@ -70,9 +66,6 @@ exports.updateUser = async function (req, res, next) {
   if (req.user._id !== req.params.id) {
     // only admins can get all users
     return res.status(403).send('Unauthorized resource access. User does not have valid credentials to perform that action');
-  }
-  if (!validateId(req.params.id)) {
-    return res.status(400).json('Invalid user id');
   }
   try {
     const updatedUser = User.findByIdAndUpdate(req.params.id, req.body, { new: true });

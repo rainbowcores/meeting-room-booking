@@ -1,6 +1,4 @@
 const booking = require('../models/booking.model');
-const validateId = require('../validateObjectId');
-
 
 exports.getAll = function (req, res) {
   booking.find({})
@@ -15,9 +13,6 @@ exports.getAll = function (req, res) {
 }
 
 exports.getBooking = function (req, res) {
-  if (!validateId(req.params.id)) {
-    return res.status(400).json('Invalid booking id');
-  }
   booking.findById(req.params.id, (error, booking) => {
     if (error) {
       return res.status(500).json(error);
@@ -42,10 +37,6 @@ exports.createBooking = function (req, res) {
 }
 
 exports.updateBooking = async function (req, res) {
-  // check that the supplied id is valid
-  if (!validateId(req.params.id)) {
-    return res.status(400).json('Invalid booking id');
-  }
   try {
     const response = await validateBooking(req.params.id, req);
   } catch (error) {
@@ -62,10 +53,6 @@ exports.updateBooking = async function (req, res) {
 }
 
 exports.deleteBooking = async function (req, res) {
-  // check that the supplied id is valid
-  if (!validateId(req.params.id)) {
-    return res.status(400).json('Invalid booking id');
-  }
   const response = await validateBooking(req.params.id, req);
   if (response) {
     return res.status(response.status).send(response.message);

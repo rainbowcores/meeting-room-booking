@@ -1,7 +1,9 @@
-const app = require('../../../index');
+let server;
 const request = require('supertest');
 
-fdescribe('/api/users', () => {
+describe('/api/users', () => {
+  beforeEach(() => { server = require('../../../index'); });
+  afterEach(() => { server.close(); });
   it('should return all bookings', () => {
   });
 

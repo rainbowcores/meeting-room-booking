@@ -1,4 +1,5 @@
 {
     "jwtPrivateKey": "randomkeyfortestingpurposes",
-    "db": "mongodb://localhost/meetingroombooking"
+    "db": "mongodb://localhost/meetingroombooking",
+    "port": ""
 }

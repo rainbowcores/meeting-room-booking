@@ -12,14 +12,9 @@ module.exports = function (app, logger) {
   app.use('/api/bookings', bookingRouter);
   app.use('/api/equipment', equipmentRouter);
   app.use('/api/auth', authRouter);
-
-  app.get('/', (req, res) => {
-    res.send('API');
-  });
-
-  app.use(function (error, req, res, next) {
+  app.get('/', (req, res) => { res.send('API'); });
+  app.use((error, req, res, next) => {
     logger.error(error); // log this to a logger file that was can parser/process later
-    res.status(500).send('There was a problem processing your request. Please try again');
+    res.status(500).send({ error: 'There was a problem processing your request. Please try again' });
   });
 }
-
