@@ -23,7 +23,8 @@ app.use(morgan(
 ));
 logger.info('Morgan started, Logging response outputs to access.log');
 
-const server = app.listen(process.env.PORT || config.get('port') || 3000, function () {
+const server = app.listen(process.env.PORT || config.get('port') || 3000, function (err) {
+  err ? logger.error(error): '';
   logger.info('node process started');
 });
 

@@ -39,7 +39,7 @@ describe('/api/users', () => {
 
     it(' api/users/:id should error is we pass invalid user id', async () => {
       const response = await request(server)
-        .get('/api/users/' + 1)
+        .get('/api/users' + 1)
         .set('x-auth-token', jwtToken);
       expect(response.status).toBe(500);
     });
